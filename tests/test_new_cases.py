@@ -86,7 +86,7 @@ def main():
           expected="NO", description="DS-PR: o n'est dans aucune extension")
     
     print("\n" + "="*60)
-    print("TOUS LES TESTS SONT PASSÉS ✓")
+    print("TOUS LES TESTS SONT PASSÉS")
     print("="*60)
 
 if __name__ == "__main__":
