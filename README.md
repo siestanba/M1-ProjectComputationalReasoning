@@ -5,8 +5,7 @@
 * Nicolas Adamczyk
 * Sebastian Straut
 
-**Cours :** Représentation des Connaissances et Raisonnement (Université de Paris) 
-**Année :** 2025-2026 
+**Représentation des Connaissances et Raisonnement** (Université Paris Cité - 2025-2026)
 
 ---
 
