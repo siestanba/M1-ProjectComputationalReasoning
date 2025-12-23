@@ -18,17 +18,17 @@ def check(cmd, expected=None):
 
 def main():
     file1 = str(DATA / "test_af1.apx")
-    # Exemples du sujet (adapter au besoin):
-    check([sys.executable, str(PROGRAM), "-p", "VE-PR", "-f", file1, "-a", "a,c,d"], expected="YES")
+    # Attendus alignés sur tests/data/test_af1.apx : extensions préf./stables = {a,d} ou {b,d}
+    check([sys.executable, str(PROGRAM), "-p", "VE-PR", "-f", file1, "-a", "a,d"], expected="YES")
     check([sys.executable, str(PROGRAM), "-p", "VE-PR", "-f", file1, "-a", "a"], expected="NO")
-    check([sys.executable, str(PROGRAM), "-p", "DS-PR", "-f", file1, "-a", "a"], expected="YES")
-    check([sys.executable, str(PROGRAM), "-p", "DC-PR", "-f", file1, "-a", "b"], expected="NO")
+    check([sys.executable, str(PROGRAM), "-p", "DS-PR", "-f", file1, "-a", "a"], expected="NO")
+    check([sys.executable, str(PROGRAM), "-p", "DC-PR", "-f", file1, "-a", "b"], expected="YES")
 
-    # Exemple stable (si tu connais l’attendu pour test_af2.apx, mets expected)
+    # Stable sur test_af2.apx : extensions = {a,e},{a,d},{b,e},{b,d}
     file2 = str(DATA / "test_af2.apx")
-    check([sys.executable, str(PROGRAM), "-p", "VE-ST", "-f", file2, "-a", "a,b"])  # sans expected
-    check([sys.executable, str(PROGRAM), "-p", "DC-ST", "-f", file2, "-a", "a"])   # sans expected
-    check([sys.executable, str(PROGRAM), "-p", "DS-ST", "-f", file2, "-a", "b"])   # sans expected
+    check([sys.executable, str(PROGRAM), "-p", "VE-ST", "-f", file2, "-a", "a,e"], expected="YES")
+    check([sys.executable, str(PROGRAM), "-p", "DC-ST", "-f", file2, "-a", "c"], expected="NO")
+    check([sys.executable, str(PROGRAM), "-p", "DS-ST", "-f", file2, "-a", "a"], expected="NO")
 
 if __name__ == "__main__":
     main()

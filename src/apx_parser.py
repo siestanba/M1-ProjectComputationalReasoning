@@ -1,5 +1,6 @@
 import re
 from src.af import AF
+from src.utils import normalize_name
 
 '''
 On va lire le fichier .apx ligne par ligne
@@ -27,7 +28,7 @@ def load_af(path):
             m_arg = ARG_RE.match(line)
             m_att = ATT_RE.match(line)
             if m_arg:
-                arg_name = m_arg.group(1)
+                arg_name = normalize_name(m_arg.group(1))
                 # Vérifier noms interdits
                 if arg_name in {"arg", "att"}:
                     raise ValueError(f"Nom d'argument interdit: '{arg_name}' (ligne {ln})")
@@ -38,7 +39,7 @@ def load_af(path):
 
                 arguments.add(arg_name)
             elif m_att:
-                x, y = m_att.groups()
+                x, y = (normalize_name(v) for v in m_att.groups())
                 # Vérifier noms interdits
                 if x in {"arg", "att"} or y in {"arg", "att"}:
                     raise ValueError(f"Nom d'argument interdit dans attaque: '{x},{y}' (ligne {ln})")

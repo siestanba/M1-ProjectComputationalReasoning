@@ -1,0 +1,6 @@
+arg(m).
+arg(n).
+arg(o).
+att(m,n).
+att(n,o).
+att(o,m).

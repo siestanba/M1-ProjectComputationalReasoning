@@ -1,5 +1,6 @@
 from src.algorithms.preferred import enumerate_preferred
 from src.algorithms.stable import enumerate_stable
+from src.utils import normalize_name
 
 def is_preferred_extension(af, S: set[str]) -> bool:
     """
@@ -37,18 +38,36 @@ def handle_query(af, task: str, arg_input: str) -> bool:
     """
     task = task.upper()
     if task == "VE-PR":
-        S = set(arg_input.split(","))
+        S = {normalize_name(a) for a in arg_input.split(",")}
+        unknown = S - af.A
+        if unknown:
+            raise ValueError(f"Arguments inconnus: {','.join(sorted(unknown))}")
         return is_preferred_extension(af, S)
     elif task == "VE-ST":
-        S = set(arg_input.split(","))
+        S = {normalize_name(a) for a in arg_input.split(",")}
+        unknown = S - af.A
+        if unknown:
+            raise ValueError(f"Arguments inconnus: {','.join(sorted(unknown))}")
         return is_stable_extension(af, S)
     elif task == "DC-PR":
-        return credulous_acceptance(af, arg_input, "PR")
+        arg = normalize_name(arg_input)
+        if arg not in af.A:
+            raise ValueError(f"Argument inconnu: {arg_input}")
+        return credulous_acceptance(af, arg, "PR")
     elif task == "DS-PR":
-        return skeptical_acceptance(af, arg_input, "PR")
+        arg = normalize_name(arg_input)
+        if arg not in af.A:
+            raise ValueError(f"Argument inconnu: {arg_input}")
+        return skeptical_acceptance(af, arg, "PR")
     elif task == "DC-ST":
-        return credulous_acceptance(af, arg_input, "ST")
+        arg = normalize_name(arg_input)
+        if arg not in af.A:
+            raise ValueError(f"Argument inconnu: {arg_input}")
+        return credulous_acceptance(af, arg, "ST")
     elif task == "DS-ST":
-        return skeptical_acceptance(af, arg_input, "ST")
+        arg = normalize_name(arg_input)
+        if arg not in af.A:
+            raise ValueError(f"Argument inconnu: {arg_input}")
+        return skeptical_acceptance(af, arg, "ST")
     else:
         raise ValueError(f"Tâche inconnue: {task}")

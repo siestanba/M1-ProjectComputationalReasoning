@@ -1,4 +1,4 @@
-import argparse # module standard de Python qui sert à gérer les arguments passés en lignes de commandes (comme -p, -f, -a dans notre cas)
+import argparse
 from src.apx_parser import load_af
 from src.semantics import handle_query
 
