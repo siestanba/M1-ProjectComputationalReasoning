@@ -2,8 +2,8 @@
 
 **Auteurs :**
 
-* [Nicolas Adamczyk]
-* [Sebastian Straut]
+* Nicolas Adamczyk
+* Sebastian Straut
 
 **Cours :** Représentation des Connaissances et Raisonnement (Université de Paris) 
 **Année :** 2025-2026 
